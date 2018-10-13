@@ -6,7 +6,7 @@
 /*
  * Your dashboard ViewModel code goes here
  */
-define(['ojs/ojcore', 'knockout', 'jquery', 'actionRepo', 'ojs/ojtable', 'ojs/ojbutton', 'ojs/ojformlayout', 'ojs/ojlabel',
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojtable', 'ojs/ojbutton', 'ojs/ojformlayout', 'ojs/ojlabel',
         'ojs/ojinputtext', 'ojs/ojdialog', 'ojs/ojcore', 'ojs/ojselectcombobox'
     ],
     function(oj, ko, $) {
@@ -129,7 +129,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'actionRepo', 'ojs/ojtable', 'ojs/oj
 
               var table = document.getElementById('leadTable');
                 table.addEventListener('ojBeforeCurrentRow', self.currentRowListener);
-                self.actionFramework = new ActionInteractionFramework();
+                self.actionFramework = actionFramework;
                 var hostname = self.actionFramework.hostname();
                 var queryString = "/crmRestApi/resources/latest/leads?onlyData=true&fields=Actions:ActionMetadata;LeadId,LeadNumber,Name,Rank,DealAmount,StatusCode,CustomerPartyName,Description,ProductGroupName,ChannelType&limit=10&offset=0";
 
@@ -146,7 +146,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'actionRepo', 'ojs/ojtable', 'ojs/oj
 
                             for(var i in data){
                                 data[i].ButtonStyle = '';
-                                var actions = data[i].Actions; 
+                                var actions = data[i].actions; 
                                 for(var k in actions)
                                 {   
                                     var actionData = actions[k].ActionMetadata;
