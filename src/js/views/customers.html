@@ -1,0 +1,123 @@
+<!--
+ Copyright (c) 2014, 2018, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+ -->
+<div class="oj-panel oj-panel-alt1 oj-margin">
+    <div class="oj-hybrid-padding">
+        <div class="oj-flex">
+            <div class="oj-flex-item">
+                <h4 style="float:left">Leads</h4>
+                <div style="float:right">
+                    <oj-button id="save">Save</oj-button>
+                    <span style="display:inline-block;width: 0.5vh;"></span>
+                    <oj-button id="cancel">Cancel
+                    </oj-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="oj-flex-item">
+        <div class="oj-panel oj-panel-alt1 oj-margin">
+            <oj-table id='leadTable' aria-label='Leads Table' data='[[leadDataSource]]' selection-mode='{"row": "single", "column": "multiple"}' columns='{{columnArray}}' style='width: 100%;'>
+            </oj-table>
+
+
+            <script type="text/html" id="name">
+                <td data-bind="text: $context.row.Name">
+                 </td>
+            </script>
+            
+            <script type="text/html" id="score">
+                <td data-bind="text: $context.row.Score">
+                 </td>
+            </script>
+            
+            <script type="text/html" id="status">
+                <td data-bind="text: $context.row.StatusCode">
+                 </td>
+            </script>
+
+            <script type="text/html" id="rank">
+                <td data-bind="text: $context.row.Rank">
+                 </td>
+            </script>
+
+            <script type="text/html" id="actions">
+                <td> 
+                   <div data-bind="style: {display: $context.row.ButtonStyle}">
+                       <oj-button name="buttonAction" class="oj-button-primary">
+                         <span style="width: 100px; color:white" data-bind="text: $context.row.ButtonDisplayName, attr: {id: $context.row.ButtonName+'##actionColumn', title: $context.row.ButtonDisplayName}"></span>
+                        </oj-button>
+                        <a id="myHref" name="actionLauncher" href="#" >
+                         <img src="images/func_ellipses_24_act.png"/>
+                        </a>
+                    </div>
+                </td>
+            </script>
+        </div>
+    </div>
+   
+  
+    <oj-menu id="myMenu" slot="menu" on-oj-action="[[actionExecute]]" style="display: none">
+    </oj-menu>
+    
+    <oj-menu id="contactListMenu" slot="menu" on-oj-action="[[selectContact]]" style="display: none">
+    </oj-menu>
+    
+    <div id="searchContact" style="display: none"><oj-input-text id="filterContactId" placeholder="Search Contact" on-raw-value-changed="[[handleRawValueChanged]]"></oj-input-text></div>
+    
+    <div id="container">
+    </div>
+    
+    <div id="dialogWrapper">
+        <oj-dialog style="display:none;width:50vh;height:40vh;" id="modelessDialog1">
+            <div slot='header'>Enter Details</div>
+            <div slot="body">
+                <div class="oj-form-layout">
+                    <div id="UserInputContent" class="oj-form oj-sm-odd-cols-12 oj-md-odd-cols-4 oj-md-labels-inline">
+                        
+                    </div>
+                </div>
+            </div>
+            <div slot="footer">
+                <oj-button id="okButton" data-bind="click: handleOKClose">OK</oj-button>
+                <span style="display:inline-block;width: 0.5vh;"></span>
+                <oj-button id="okButton" data-bind="click: handleCancelClose">Cancel</oj-button>
+            </div>
+        </oj-dialog>
+    </div>
+
+    <span style="display:block; height: 2vh;"></span>
+    
+    <div>
+        <div id="DetailsButtons"  style="float:right">
+
+        </div>
+        <h4><span id="LeadName"></span></h4>
+    </div>
+
+    <div class="oj-panel oj-panel-alt1 oj-margin" style="width:100%">
+        <div id="componentDemoContent" style="width: 1px; min-width: 100%;">
+            <div id="form-container">
+
+                <oj-form-layout id="ofl1" label-edge="start" max-columns="2">
+
+                    <oj-label for="LeadNumber">Lead Number</oj-label>
+                    <span id="LeadNumber"></span>
+
+                    <oj-label for="Description">Description</oj-label>
+                    <span id="Description"></span>
+
+                    <oj-label for="ChannelType">Channel</oj-label>
+                    <span id="ChannelType"></span>
+
+                    <oj-label for="CustomerPartyName">Account</oj-label>
+                    <span id="CustomerPartyName"></span>
+
+                    <oj-label for="ProductGroupName">Product Group</oj-label>
+                    <span id="ProductGroupName"></span>
+
+                </oj-form-layout>
+            </div>
+        </div>
+    </div>
