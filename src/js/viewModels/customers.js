@@ -7,7 +7,7 @@
  * Your customer ViewModel code goes here
  */
 
-define(['ojs/ojcore', 'knockout', 'jquery', 'actionRepo', 'ojs/ojtable', 'ojs/ojbutton', 'ojs/ojformlayout', 'ojs/ojlabel',
+define(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojtable', 'ojs/ojbutton', 'ojs/ojformlayout', 'ojs/ojlabel',
         'ojs/ojinputtext', 'ojs/ojdialog', 'ojs/ojcore', 'ojs/ojselectcombobox'
     ],
     function(oj, ko, $) {
@@ -124,7 +124,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'actionRepo', 'ojs/ojtable', 'ojs/oj
         // Implement if needed
         var table = document.getElementById('leadTable');
                 table.addEventListener('ojBeforeCurrentRow', self.currentRowListener);
-                self.actionFramework = new ActionInteractionFramework();
+                self.actionFramework = actionFramework;
                 var hostname = "https://fuscdrmsmc225-fa-ext.us.oracle.com";
                 var queryString = "/crmRestApi/searchResources/latest/custom-actions/queries/f786f657-1e14-4487-aa6c-755725315417/results?onlyData=true&entity=Lead&limit=10&sort=LeadId:asc&offset=10";
 
